@@ -97,6 +97,7 @@ class AutoNumber:
         if style_name.count(',') == 0:  # 未指定，本模块内查找
             assert hasattr(sys.modules[__name__], style_name), '未找到指定样式：' + style_name
             self.style = getattr(sys.modules[__name__], style_name)
+            self.import_module = __import__(__name__)
         elif style_name.count(',') == 1:  # 指定了外部模块
             self.module_name, style_name = style_name.split(',')
             self.import_module = __import__(self.module_name)
